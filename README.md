@@ -131,29 +131,4 @@ classDiagram
 
 ---
 
-## 5. Danh Sách 8 Module Chức Năng (Theo CodeMap Studio)
 
-1. **Xử lý Tài khoản & Đăng nhập (Video #2)**: Tài khoản `admin/admin` (ADMIN) và `giangvien/123456` (GIANGVIEN).
-2. **Thông tin chi tiết & Đổi mật khẩu (Video #3)**: Đổi mật khẩu người dùng đang đăng nhập.
-3. **Quản lý Khoa (Video #4)**: Thêm/Sửa/Xóa/Tìm kiếm Khoa.
-4. **Quản lý Lớp (Video #5)**: Thêm/Sửa/Xóa/Tìm kiếm Lớp sinh viên.
-5. **Quản lý Cố vấn học tập (Video #6)**: Thêm/Sửa/Xóa/Tìm kiếm Giảng viên cố vấn.
-6. **Quản lý Môn học (Video #7)**: Thêm/Sửa/Xóa/Tìm kiếm Môn học & tín chỉ.
-7. **Quản lý Sinh viên (Video #8)**: Hồ sơ sinh viên, quê quán, lớp, cố vấn.
-8. **Quản lý Điểm (Video #9 - END)**: Điểm 10%, 30%, 60%, tính GPA hệ 4, xếp loại A-F và In bảng điểm TXT.
-
----
-
-## 6. Hướng Dẫn Biên Dịch & Chạy Chương Trình
-
-### 6.1. Chạy nhanh 1-Click trên Windows
-Nhấp kép file **`build_and_run.bat`** hoặc chạy từ Terminal:
-```cmd
-.\build_and_run.bat
-```
-
-### 6.2. Biên dịch thủ công
-```cmd
-javac -encoding UTF-8 -d bin src/com/studentmanagement/model/*.java src/com/studentmanagement/exception/*.java src/com/studentmanagement/util/*.java src/com/studentmanagement/repository/*.java src/com/studentmanagement/service/*.java src/com/studentmanagement/view/*.java src/com/studentmanagement/Main.java
-java -cp bin com.studentmanagement.Main
-```
