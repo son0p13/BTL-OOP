@@ -1,0 +1,3 @@
+Id,FullName,Gender,DateOfBirth,Email,Phone,StudentId,Hometown,ClassId,AdvisorId
+SV001,Nguyễn Văn An,Nam,12/05/2003,an.nv@gmail.com,0987654321,SV001,Hà Nội,CNTT01,GV001
+SV002,Trần Thị Bích,Nữ,18/09/2003,bich.tt@gmail.com,0912345678,SV002,Đà Nẵng,KT01,GV002

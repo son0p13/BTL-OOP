@@ -1,0 +1,3 @@
+Id,FullName,Gender,DateOfBirth,Email,Phone,AdvisorId,FacultyId
+GV001,ThS. Lê Hoàng Cường,Nam,15/04/1985,cuong.lh@uni.edu.vn,0912345678,GV001,CNTT
+GV002,TS. Phạm Minh Dung,Nữ,20/10/1988,dung.pm@uni.edu.vn,0934567890,GV002,KT

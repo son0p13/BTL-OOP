@@ -1,0 +1,4 @@
+GradeId,StudentId,SubjectId,AttendanceScore,MidtermScore,FinalScore
+G001,SV001,JAVA01,9.00,8.50,9.50
+G002,SV001,CSDL01,8.00,7.50,8.00
+G003,SV002,MKT01,9.50,9.00,9.00
