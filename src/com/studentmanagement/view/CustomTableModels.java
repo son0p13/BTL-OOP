@@ -1,6 +1,8 @@
 package com.studentmanagement.view;
 
 import com.studentmanagement.model.*;
+import com.studentmanagement.service.StudentService;
+import com.studentmanagement.service.SubjectService;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -166,8 +168,22 @@ public class CustomTableModels {
 
     // Grade Table Model
     public static class GradeTableModel extends AbstractTableModel {
-        private final String[] cols = {"Mã Điểm", "Mã SV", "Mã Môn", "C.Cần (10%)", "G.Kỳ (30%)", "C.Kỳ (60%)", "Tổng (Thang 10)", "Tổng (Thang 4)", "Điểm Chữ", "Xếp Loại"};
+        private final String[] cols = {"Mã Điểm", "Mã SV", "Họ và Tên SV", "Mã Môn", "Tên Môn Học", "C.Cần (10%)", "G.Kỳ (30%)", "C.Kỳ (60%)", "Tổng (Thang 10)", "Tổng (Thang 4)", "Điểm Chữ", "Xếp Loại"};
         private List<Grade> list = new ArrayList<>();
+        private StudentService studentService;
+        private SubjectService subjectService;
+
+        public GradeTableModel() {}
+
+        public GradeTableModel(StudentService studentService, SubjectService subjectService) {
+            this.studentService = studentService;
+            this.subjectService = subjectService;
+        }
+
+        public void setServices(StudentService studentService, SubjectService subjectService) {
+            this.studentService = studentService;
+            this.subjectService = subjectService;
+        }
 
         public void setData(List<Grade> list) {
             this.list = new ArrayList<>(list);
@@ -186,14 +202,28 @@ public class CustomTableModels {
             switch (c) {
                 case 0: return g.getGradeId();
                 case 1: return g.getStudentId();
-                case 2: return g.getSubjectId();
-                case 3: return String.format("%.1f", g.getAttendanceScore());
-                case 4: return String.format("%.1f", g.getMidtermScore());
-                case 5: return String.format("%.1f", g.getFinalScore());
-                case 6: return String.format("%.2f", g.calculateTotal10());
-                case 7: return String.format("%.2f", g.calculateTotal4());
-                case 8: return g.getLetterGrade();
-                case 9: return g.getRank();
+                case 2: {
+                    if (studentService != null) {
+                        Student s = studentService.getStudentById(g.getStudentId());
+                        if (s != null) return s.getFullName();
+                    }
+                    return "";
+                }
+                case 3: return g.getSubjectId();
+                case 4: {
+                    if (subjectService != null) {
+                        Subject sub = subjectService.getSubjectById(g.getSubjectId());
+                        if (sub != null) return sub.getSubjectName();
+                    }
+                    return "";
+                }
+                case 5: return String.format("%.1f", g.getAttendanceScore());
+                case 6: return String.format("%.1f", g.getMidtermScore());
+                case 7: return String.format("%.1f", g.getFinalScore());
+                case 8: return String.format("%.2f", g.calculateTotal10());
+                case 9: return String.format("%.2f", g.calculateTotal4());
+                case 10: return g.getLetterGrade();
+                case 11: return g.getRank();
                 default: return null;
             }
         }

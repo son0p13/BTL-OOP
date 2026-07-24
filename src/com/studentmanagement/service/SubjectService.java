@@ -63,6 +63,14 @@ public class SubjectService {
         return dataStore.getSubjects().stream().anyMatch(s -> s.getSubjectId().equalsIgnoreCase(subjectId));
     }
 
+    public Subject getSubjectById(String subjectId) {
+        if (subjectId == null || subjectId.trim().isEmpty()) return null;
+        return dataStore.getSubjects().stream()
+                .filter(s -> s.getSubjectId().equalsIgnoreCase(subjectId.trim()))
+                .findFirst()
+                .orElse(null);
+    }
+
     private void validateSubject(Subject s) throws InvalidDataException {
         if (s == null) throw new InvalidDataException("Thông tin Môn Học không được rỗng!");
         ValidationUtil.validateNotEmpty(s.getSubjectId(), "Mã Môn Học");

@@ -66,6 +66,14 @@ public class StudentService {
         return dataStore.getStudents().stream().anyMatch(s -> s.getStudentId().equalsIgnoreCase(studentId));
     }
 
+    public Student getStudentById(String studentId) {
+        if (studentId == null || studentId.trim().isEmpty()) return null;
+        return dataStore.getStudents().stream()
+                .filter(s -> s.getStudentId().equalsIgnoreCase(studentId.trim()))
+                .findFirst()
+                .orElse(null);
+    }
+
     private void validateStudent(Student s) throws InvalidDataException {
         if (s == null) throw new InvalidDataException("Thông tin Sinh Viên không được rỗng!");
         ValidationUtil.validateNotEmpty(s.getStudentId(), "Mã Sinh Viên");

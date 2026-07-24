@@ -123,7 +123,7 @@ public class GradePanel extends JPanel {
         add(formPanel, BorderLayout.WEST);
 
         // Table Panel (Center)
-        tableModel = new CustomTableModels.GradeTableModel();
+        tableModel = new CustomTableModels.GradeTableModel(studentService, subjectService);
         table = new JTable(tableModel);
         table.setRowHeight(24);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -147,11 +147,38 @@ public class GradePanel extends JPanel {
     public void loadCombos() {
         cbStudent.removeAllItems();
         List<Student> students = studentService.getAllStudents();
-        for (Student s : students) cbStudent.addItem(s.getStudentId());
+        for (Student s : students) {
+            cbStudent.addItem(s.getStudentId() + " - " + s.getFullName());
+        }
 
         cbSubject.removeAllItems();
         List<Subject> subjects = subjectService.getAllSubjects();
-        for (Subject s : subjects) cbSubject.addItem(s.getSubjectId());
+        for (Subject s : subjects) {
+            cbSubject.addItem(s.getSubjectId() + " - " + s.getSubjectName());
+        }
+    }
+
+    private String getSelectedStudentId() {
+        String item = (String) cbStudent.getSelectedItem();
+        if (item == null) return "";
+        return item.contains(" - ") ? item.split(" - ")[0].trim() : item.trim();
+    }
+
+    private String getSelectedSubjectId() {
+        String item = (String) cbSubject.getSelectedItem();
+        if (item == null) return "";
+        return item.contains(" - ") ? item.split(" - ")[0].trim() : item.trim();
+    }
+
+    private void setComboByValue(JComboBox<String> combo, String value) {
+        if (value == null) return;
+        for (int i = 0; i < combo.getItemCount(); i++) {
+            String item = combo.getItemAt(i);
+            if (item.startsWith(value + " - ") || item.equalsIgnoreCase(value)) {
+                combo.setSelectedIndex(i);
+                return;
+            }
+        }
     }
 
     private void loadData() {
@@ -165,8 +192,8 @@ public class GradePanel extends JPanel {
             if (g != null) {
                 txtGradeId.setText(g.getGradeId());
                 txtGradeId.setEditable(false);
-                cbStudent.setSelectedItem(g.getStudentId());
-                cbSubject.setSelectedItem(g.getSubjectId());
+                setComboByValue(cbStudent, g.getStudentId());
+                setComboByValue(cbSubject, g.getSubjectId());
                 txtAttendanceScore.setText(String.valueOf(g.getAttendanceScore()));
                 txtMidtermScore.setText(String.valueOf(g.getMidtermScore()));
                 txtFinalScore.setText(String.valueOf(g.getFinalScore()));
@@ -188,8 +215,8 @@ public class GradePanel extends JPanel {
     private void onAdd() {
         try {
             String gId = txtGradeId.getText().trim();
-            String sId = (String) cbStudent.getSelectedItem();
-            String subId = (String) cbSubject.getSelectedItem();
+            String sId = getSelectedStudentId();
+            String subId = getSelectedSubjectId();
             double att = Double.parseDouble(txtAttendanceScore.getText().trim());
             double mid = Double.parseDouble(txtMidtermScore.getText().trim());
             double fin = Double.parseDouble(txtFinalScore.getText().trim());
@@ -208,8 +235,8 @@ public class GradePanel extends JPanel {
     private void onEdit() {
         try {
             String gId = txtGradeId.getText().trim();
-            String sId = (String) cbStudent.getSelectedItem();
-            String subId = (String) cbSubject.getSelectedItem();
+            String sId = getSelectedStudentId();
+            String subId = getSelectedSubjectId();
             double att = Double.parseDouble(txtAttendanceScore.getText().trim());
             double mid = Double.parseDouble(txtMidtermScore.getText().trim());
             double fin = Double.parseDouble(txtFinalScore.getText().trim());
@@ -241,13 +268,11 @@ public class GradePanel extends JPanel {
     }
 
     private void onPrintTranscript() {
-        String studentId = (String) cbStudent.getSelectedItem();
-        if (studentId == null || studentId.isEmpty()) return;
+        String studentId = getSelectedStudentId();
+        if (studentId.isEmpty()) return;
 
         try {
-            Student s = studentService.getAllStudents().stream()
-                    .filter(st -> st.getStudentId().equalsIgnoreCase(studentId))
-                    .findFirst().orElse(null);
+            Student s = studentService.getStudentById(studentId);
 
             if (s == null) {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin sinh viên!", "Lỗi", JOptionPane.ERROR_MESSAGE);

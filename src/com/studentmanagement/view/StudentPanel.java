@@ -180,11 +180,38 @@ public class StudentPanel extends JPanel {
     public void loadCombos() {
         cbClass.removeAllItems();
         List<StudentClass> classes = classService.getAllClasses();
-        for (StudentClass c : classes) cbClass.addItem(c.getClassId());
+        for (StudentClass c : classes) {
+            cbClass.addItem(c.getClassId() + " - " + c.getClassName());
+        }
 
         cbAdvisor.removeAllItems();
         List<Advisor> advisors = advisorService.getAllAdvisors();
-        for (Advisor a : advisors) cbAdvisor.addItem(a.getAdvisorId());
+        for (Advisor a : advisors) {
+            cbAdvisor.addItem(a.getAdvisorId() + " - " + a.getFullName());
+        }
+    }
+
+    private String getSelectedClassId() {
+        String item = (String) cbClass.getSelectedItem();
+        if (item == null) return "";
+        return item.contains(" - ") ? item.split(" - ")[0].trim() : item.trim();
+    }
+
+    private String getSelectedAdvisorId() {
+        String item = (String) cbAdvisor.getSelectedItem();
+        if (item == null) return "";
+        return item.contains(" - ") ? item.split(" - ")[0].trim() : item.trim();
+    }
+
+    private void setComboByValue(JComboBox<String> combo, String value) {
+        if (value == null) return;
+        for (int i = 0; i < combo.getItemCount(); i++) {
+            String item = combo.getItemAt(i);
+            if (item.startsWith(value + " - ") || item.equalsIgnoreCase(value)) {
+                combo.setSelectedIndex(i);
+                return;
+            }
+        }
     }
 
     private void loadData() {
@@ -202,8 +229,8 @@ public class StudentPanel extends JPanel {
                 cbGender.setSelectedItem(s.getGender());
                 txtDob.setText(s.getDateOfBirth());
                 txtHometown.setText(s.getHometown());
-                cbClass.setSelectedItem(s.getClassId());
-                cbAdvisor.setSelectedItem(s.getAdvisorId());
+                setComboByValue(cbClass, s.getClassId());
+                setComboByValue(cbAdvisor, s.getAdvisorId());
                 txtEmail.setText(s.getEmail());
                 txtPhone.setText(s.getPhone());
             }
@@ -230,8 +257,8 @@ public class StudentPanel extends JPanel {
             String gender = (String) cbGender.getSelectedItem();
             String dob = txtDob.getText().trim();
             String home = txtHometown.getText().trim();
-            String cls = (String) cbClass.getSelectedItem();
-            String adv = (String) cbAdvisor.getSelectedItem();
+            String cls = getSelectedClassId();
+            String adv = getSelectedAdvisorId();
             String email = txtEmail.getText().trim();
             String phone = txtPhone.getText().trim();
 
@@ -251,8 +278,8 @@ public class StudentPanel extends JPanel {
             String gender = (String) cbGender.getSelectedItem();
             String dob = txtDob.getText().trim();
             String home = txtHometown.getText().trim();
-            String cls = (String) cbClass.getSelectedItem();
-            String adv = (String) cbAdvisor.getSelectedItem();
+            String cls = getSelectedClassId();
+            String adv = getSelectedAdvisorId();
             String email = txtEmail.getText().trim();
             String phone = txtPhone.getText().trim();
 
