@@ -10,9 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Class Management Panel (Video #5).
- */
 public class ClassPanel extends JPanel {
 
     private JTextField txtClassId;
@@ -46,7 +43,6 @@ public class ClassPanel extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Form Panel (West)
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createTitledBorder("Thông Tin Lớp"));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -81,7 +77,6 @@ public class ClassPanel extends JPanel {
         txtAcademicYear = new JTextField("2022-2026", 16);
         formPanel.add(txtAcademicYear, gbc);
 
-        // Buttons
         row++;
         gbc.gridx = 0; gbc.gridy = row; gbc.gridwidth = 2;
         JPanel btnPanel = new JPanel(new GridLayout(2, 2, 8, 8));
@@ -98,7 +93,6 @@ public class ClassPanel extends JPanel {
 
         add(formPanel, BorderLayout.WEST);
 
-        // Table & Search Panel (Center)
         JPanel centerPanel = new JPanel(new BorderLayout(5, 5));
 
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -121,7 +115,6 @@ public class ClassPanel extends JPanel {
 
         add(centerPanel, BorderLayout.CENTER);
 
-        // Listeners
         table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) populateForm();
         });

@@ -7,9 +7,6 @@ import com.studentmanagement.repository.DataStore;
 
 import java.util.Optional;
 
-/**
- * Service for handling User Authentication & Change Password (Video #2, #3).
- */
 public class AuthService {
 
     private final DataStore dataStore;

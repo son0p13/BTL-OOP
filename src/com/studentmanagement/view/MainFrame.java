@@ -6,9 +6,6 @@ import com.studentmanagement.service.*;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Main Application Window integrating all 8 modules from CodeMap Studio.
- */
 public class MainFrame extends JFrame {
 
     private final AuthService authService;
@@ -34,7 +31,7 @@ public class MainFrame extends JFrame {
     public MainFrame(AuthService authService, FacultyService facultyService, ClassService classService,
                      AdvisorService advisorService, SubjectService subjectService, StudentService studentService,
                      GradeService gradeService) {
-        super("PHẦN MỀM QUẢN LÝ SINH VIÊN (CodeMap Studio - Standard Architecture)");
+        super("PHẦN MỀM QUẢN LÝ SINH VIÊN");
         this.authService = authService;
         this.facultyService = facultyService;
         this.classService = classService;
@@ -52,7 +49,6 @@ public class MainFrame extends JFrame {
         setMinimumSize(new Dimension(1000, 650));
         setLocationRelativeTo(null);
 
-        // Header Panel (Top)
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(25, 118, 210));
         headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
@@ -81,7 +77,6 @@ public class MainFrame extends JFrame {
         headerPanel.add(userPanel, BorderLayout.EAST);
         add(headerPanel, BorderLayout.NORTH);
 
-        // Tabbed Pane (Center)
         tabbedPane = new JTabbedPane();
 
         facultyPanel = new FacultyPanel(facultyService);
@@ -100,13 +95,11 @@ public class MainFrame extends JFrame {
 
         add(tabbedPane, BorderLayout.CENTER);
 
-        // Status Bar
         JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
         statusBar.setBorder(BorderFactory.createEtchedBorder());
         statusBar.add(new JLabel("Hệ thống đã kết nối dữ liệu. Sẵn sàng làm việc."));
         add(statusBar, BorderLayout.SOUTH);
 
-        // Tab change listener to auto-refresh dropdown combos
         tabbedPane.addChangeListener(e -> {
             int index = tabbedPane.getSelectedIndex();
             if (index == 1) classPanel.loadFaculties();

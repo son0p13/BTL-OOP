@@ -12,9 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Student Profile Management Panel (Video #8).
- */
 public class StudentPanel extends JPanel {
 
     private JTextField txtStudentId;
@@ -55,7 +52,6 @@ public class StudentPanel extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Form Panel (West)
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createTitledBorder("Thông Tin Sinh Viên"));
         GridBagConstraints gbc = new GridBagConstraints();
@@ -125,7 +121,6 @@ public class StudentPanel extends JPanel {
         txtPhone = new JTextField(16);
         formPanel.add(txtPhone, gbc);
 
-        // Buttons
         row++;
         gbc.gridx = 0; gbc.gridy = row; gbc.gridwidth = 2;
         JPanel btnPanel = new JPanel(new GridLayout(2, 2, 8, 8));
@@ -142,7 +137,6 @@ public class StudentPanel extends JPanel {
 
         add(formPanel, BorderLayout.WEST);
 
-        // Table & Search Panel (Center)
         JPanel centerPanel = new JPanel(new BorderLayout(5, 5));
 
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -165,7 +159,6 @@ public class StudentPanel extends JPanel {
 
         add(centerPanel, BorderLayout.CENTER);
 
-        // Listeners
         table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) populateForm();
         });

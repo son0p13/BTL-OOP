@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Centralized DataStore managing in-memory entity lists with CSV persistence.
- */
 public class DataStore {
 
     private static DataStore instance;
@@ -48,7 +45,6 @@ public class DataStore {
             users.clear();
             users.addAll(CsvUtil.readUsers(usersFile));
             if (users.isEmpty()) {
-                // Default admin and user accounts (Video #2)
                 users.add(new User("admin", "admin", "Quản Trị Viên Hệ Thống", "ADMIN"));
                 users.add(new User("giangvien", "123456", "Giảng Viên Vũ Văn A", "GIANGVIEN"));
                 saveUsers();

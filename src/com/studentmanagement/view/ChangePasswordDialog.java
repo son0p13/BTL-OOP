@@ -6,9 +6,6 @@ import com.studentmanagement.service.AuthService;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Dialog for Change Password (Video #3).
- */
 public class ChangePasswordDialog extends JDialog {
 
     private JPasswordField txtOldPassword;
@@ -37,21 +34,18 @@ public class ChangePasswordDialog extends JDialog {
         gbc.insets = new Insets(8, 8, 8, 8);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Old password
         gbc.gridx = 0; gbc.gridy = 0;
         formPanel.add(new JLabel("Mật khẩu hiện tại:"), gbc);
         gbc.gridx = 1;
         txtOldPassword = new JPasswordField(18);
         formPanel.add(txtOldPassword, gbc);
 
-        // New password
         gbc.gridx = 0; gbc.gridy = 1;
         formPanel.add(new JLabel("Mật khẩu mới:"), gbc);
         gbc.gridx = 1;
         txtNewPassword = new JPasswordField(18);
         formPanel.add(txtNewPassword, gbc);
 
-        // Confirm password
         gbc.gridx = 0; gbc.gridy = 2;
         formPanel.add(new JLabel("Xác nhận mật khẩu mới:"), gbc);
         gbc.gridx = 1;
@@ -60,7 +54,6 @@ public class ChangePasswordDialog extends JDialog {
 
         add(formPanel, BorderLayout.CENTER);
 
-        // Buttons
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
         btnSave = new JButton("Lưu Mật Khẩu");
         btnCancel = new JButton("Hủy Bỏ");

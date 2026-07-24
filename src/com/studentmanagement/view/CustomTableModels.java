@@ -8,12 +8,8 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Custom JTable models for all 6 entities in the system.
- */
 public class CustomTableModels {
 
-    // Faculty Table Model
     public static class FacultyTableModel extends AbstractTableModel {
         private final String[] cols = {"Mã Khoa", "Tên Khoa", "Trưởng Khoa", "Số Điện Thoại"};
         private List<Faculty> list = new ArrayList<>();
@@ -42,7 +38,6 @@ public class CustomTableModels {
         }
     }
 
-    // Class Table Model
     public static class ClassTableModel extends AbstractTableModel {
         private final String[] cols = {"Mã Lớp", "Tên Lớp", "Mã Khoa", "Khóa Học"};
         private List<StudentClass> list = new ArrayList<>();
@@ -71,7 +66,6 @@ public class CustomTableModels {
         }
     }
 
-    // Advisor Table Model
     public static class AdvisorTableModel extends AbstractTableModel {
         private final String[] cols = {"Mã CVHT", "Họ và Tên", "Giới Tính", "Khoa Trực Thuộc", "Email", "Số Điện Thoại"};
         private List<Advisor> list = new ArrayList<>();
@@ -102,7 +96,6 @@ public class CustomTableModels {
         }
     }
 
-    // Subject Table Model
     public static class SubjectTableModel extends AbstractTableModel {
         private final String[] cols = {"Mã Môn", "Tên Môn Học", "Số Tín Chỉ", "Tiết Lý Thuyết", "Tiết Thực Hành"};
         private List<Subject> list = new ArrayList<>();
@@ -132,7 +125,6 @@ public class CustomTableModels {
         }
     }
 
-    // Student Table Model
     public static class StudentTableModel extends AbstractTableModel {
         private final String[] cols = {"Mã SV", "Họ và Tên", "Giới Tính", "Ngày Sinh", "Quê Quán", "Mã Lớp", "Mã CVHT", "Email", "Số ĐT"};
         private List<Student> list = new ArrayList<>();
@@ -166,7 +158,6 @@ public class CustomTableModels {
         }
     }
 
-    // Grade Table Model
     public static class GradeTableModel extends AbstractTableModel {
         private final String[] cols = {"Mã Điểm", "Mã SV", "Họ và Tên SV", "Mã Môn", "Tên Môn Học", "C.Cần (10%)", "G.Kỳ (30%)", "C.Kỳ (60%)", "Tổng (Thang 10)", "Tổng (Thang 4)", "Điểm Chữ", "Xếp Loại"};
         private List<Grade> list = new ArrayList<>();

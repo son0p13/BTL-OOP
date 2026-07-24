@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service for Academic Advisor Management (Video #6).
- */
 public class AdvisorService {
 
     private final DataStore dataStore = DataStore.getInstance();

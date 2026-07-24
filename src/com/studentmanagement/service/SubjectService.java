@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service for Subject / Course Management (Video #7).
- */
 public class SubjectService {
 
     private final DataStore dataStore = DataStore.getInstance();

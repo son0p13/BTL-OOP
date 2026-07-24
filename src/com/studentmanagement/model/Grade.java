@@ -2,9 +2,6 @@ package com.studentmanagement.model;
 
 import java.io.Serializable;
 
-/**
- * Entity representing Grade records for a Student in a Subject (Video #9).
- */
 public class Grade implements Serializable {
     private static final long serialVersionUID = 1L;
 

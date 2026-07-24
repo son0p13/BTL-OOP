@@ -1,7 +1,7 @@
 @echo off
 chcp 65001 > nul
 echo =================================================================
-echo     BIÊN DỊCH VÀ KHỞI CHẠY PHẦN MỀM QUẢN LÝ SINH VIÊN (CODEMAP)
+echo     BIÊN DỊCH VÀ KHỞI CHẠY PHẦN MỀM QUẢN LÝ SINH VIÊN
 echo =================================================================
 if not exist "bin" mkdir bin
 echo Dang bien dich ma nguon Java...

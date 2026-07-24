@@ -7,9 +7,6 @@ import com.studentmanagement.service.AuthService;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Login Window for User Authentication & Role Permission (Video #2).
- */
 public class LoginFrame extends JFrame {
 
     private JTextField txtUsername;
@@ -38,7 +35,6 @@ public class LoginFrame extends JFrame {
 
         setLayout(new BorderLayout());
 
-        // Header Panel
         JPanel headerPanel = new JPanel();
         headerPanel.setBackground(new Color(21, 101, 192));
         headerPanel.setPreferredSize(new Dimension(450, 60));
@@ -50,32 +46,28 @@ public class LoginFrame extends JFrame {
 
         add(headerPanel, BorderLayout.NORTH);
 
-        // Center Form
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Username
         gbc.gridx = 0; gbc.gridy = 0;
         formPanel.add(new JLabel("Tên đăng nhập:"), gbc);
         gbc.gridx = 1;
         txtUsername = new JTextField(18);
-        txtUsername.setText("admin"); // Default hint for convenience
+        txtUsername.setText("admin");
         formPanel.add(txtUsername, gbc);
 
-        // Password
         gbc.gridx = 0; gbc.gridy = 1;
         formPanel.add(new JLabel("Mật khẩu:"), gbc);
         gbc.gridx = 1;
         txtPassword = new JPasswordField(18);
-        txtPassword.setText("admin"); // Default hint for convenience
+        txtPassword.setText("admin");
         formPanel.add(txtPassword, gbc);
 
         add(formPanel, BorderLayout.CENTER);
 
-        // Buttons
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 15));
         btnLogin = new JButton("Đăng Nhập");
         btnLogin.setFont(new Font("SansSerif", Font.BOLD, 13));
@@ -89,7 +81,6 @@ public class LoginFrame extends JFrame {
 
         add(btnPanel, BorderLayout.SOUTH);
 
-        // Action Listeners
         btnLogin.addActionListener(e -> performLogin());
         txtPassword.addActionListener(e -> performLogin());
         btnExit.addActionListener(e -> System.exit(0));

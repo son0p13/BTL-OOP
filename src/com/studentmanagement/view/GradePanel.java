@@ -16,9 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Grade Management Panel (Video #9 - END).
- */
 public class GradePanel extends JPanel {
 
     private JTextField txtGradeId;
@@ -54,9 +51,8 @@ public class GradePanel extends JPanel {
         setLayout(new BorderLayout(10, 10));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Form Panel (West)
         JPanel formPanel = new JPanel(new GridBagLayout());
-        formPanel.setBorder(BorderFactory.createTitledBorder("Nhập Điểm Môn Học (Video #9)"));
+        formPanel.setBorder(BorderFactory.createTitledBorder("Nhập Điểm Môn Học"));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(6, 6, 6, 6);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -103,7 +99,6 @@ public class GradePanel extends JPanel {
         txtFinalScore = new JTextField("9.0", 16);
         formPanel.add(txtFinalScore, gbc);
 
-        // Buttons
         row++;
         gbc.gridx = 0; gbc.gridy = row; gbc.gridwidth = 2;
         JPanel btnPanel = new JPanel(new GridLayout(3, 2, 8, 8));
@@ -122,7 +117,6 @@ public class GradePanel extends JPanel {
 
         add(formPanel, BorderLayout.WEST);
 
-        // Table Panel (Center)
         tableModel = new CustomTableModels.GradeTableModel(studentService, subjectService);
         table = new JTable(tableModel);
         table.setRowHeight(24);
@@ -132,7 +126,6 @@ public class GradePanel extends JPanel {
         scrollPane.setBorder(BorderFactory.createTitledBorder("Bảng Tổng Hợp Điểm Sinh Viên"));
         add(scrollPane, BorderLayout.CENTER);
 
-        // Listeners
         table.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) populateForm();
         });

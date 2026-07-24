@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service for Grade Management (Video #9).
- */
 public class GradeService {
 
     private final DataStore dataStore = DataStore.getInstance();

@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service for Faculty Management (Video #4).
- */
 public class FacultyService {
 
     private final DataStore dataStore = DataStore.getInstance();

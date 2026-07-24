@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Service for Student Management (Video #8).
- */
 public class StudentService {
 
     private final DataStore dataStore = DataStore.getInstance();
